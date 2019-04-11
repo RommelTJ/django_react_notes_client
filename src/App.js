@@ -12,7 +12,7 @@ class App extends Component {
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
-          <Button color="red">Hello</Button>
+          <Button color="danger">Hello</Button>
           <a
             className="App-link"
             href="https://reactjs.org"
