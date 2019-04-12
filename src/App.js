@@ -1,28 +1,32 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, {Component, Fragment} from 'react';
 import './App.css';
-import {Button} from 'reactstrap';
+import {Button, Container, Row, Col} from 'reactstrap';
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+        notes: [],
+        current_note_id: 0,
+        is_creating: true
+    }
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <Button color="danger">Hello</Button>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Fragment>
+          <Container>
+              <Row>
+                  <Col xs="10">
+                      <h2>Realtime notes</h2>
+                  </Col>
+                  <Col xs="2">
+                      <Button color="primary">Create new note</Button>
+                  </Col>
+              </Row>
+          </Container>
+      </Fragment>
     );
   }
 }
