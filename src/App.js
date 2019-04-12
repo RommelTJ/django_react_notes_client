@@ -37,6 +37,10 @@ class App extends Component {
       this.setState({is_creating: false});
   }
 
+  handleAddNote = () => {
+      this.setState({is_creating: true});
+  };
+
   render() {
     return (
       <Fragment>
@@ -46,7 +50,9 @@ class App extends Component {
                       <h2>Realtime notes</h2>
                   </Col>
                   <Col xs="2">
-                      <Button color="primary">Create new note</Button>
+                      <Button color="primary" onClick={() => this.handleAddNote()}>
+                          Create new note
+                      </Button>
                   </Col>
               </Row>
 
