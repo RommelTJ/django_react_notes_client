@@ -33,7 +33,8 @@ class App extends Component {
   }
 
   handleItemClick(id) {
-      console.log(id);
+      this.setState({current_note_id: id});
+      this.setState({is_creating: false});
   }
 
   render() {
@@ -55,6 +56,7 @@ class App extends Component {
                   </Col>
                   <Col xs="8">
                       <p>Content/Editing here...</p>
+                      {this.state.is_creating ? "Creating now..." : `Editing note with id: ${this.state.current_note_id}` }
                   </Col>
               </Row>
           </Container>
