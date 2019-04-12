@@ -15,7 +15,9 @@ class App extends Component {
         current_note_id: 0,
         is_creating: true,
         is_fetching: true
-    }
+    };
+
+    this.getData = this.getData.bind(this);
   }
 
   componentDidMount() {
@@ -39,6 +41,7 @@ class App extends Component {
 
   handleSaveNote = async (data) => {
       await addNote(data);
+      this.setState({is_fetching: true});
       await this.getData();
   };
 
