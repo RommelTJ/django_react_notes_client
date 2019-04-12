@@ -2,7 +2,8 @@ import React, {Component, Fragment} from 'react';
 import './App.css';
 import {Button, Container, Row, Col} from 'reactstrap';
 import ListNotes from "./components/ListNotes";
-import {fetchNotes, fetchNote, updateNote} from './api';
+import {fetchNotes, fetchNote, updateNote, addNote} from './api';
+import AddNoteForm from './components/AddNoteForm';
 
 
 class App extends Component {
@@ -36,6 +37,11 @@ class App extends Component {
       this.setState({is_creating: true});
   };
 
+  handleSaveNote = async (data) => {
+      await addNote(data);
+      await this.getData();
+  };
+
   render() {
     return (
       <Fragment>
@@ -56,8 +62,11 @@ class App extends Component {
                       <ListNotes notes={this.state.notes} handleItemClick={(id) => this.handleItemClick(id)} />
                   </Col>
                   <Col xs="8">
-                      <p>Content/Editing here...</p>
-                      {this.state.is_creating ? "Creating now..." : `Editing note with id: ${this.state.current_note_id}` }
+                      {
+                          this.state.is_creating ?
+                              <AddNoteForm handleSave={(data) => this.handleSaveNote(data)} /> :
+                              `Editing note with id: ${this.state.current_note_id}`
+                      }
                   </Col>
               </Row>
           </Container>
