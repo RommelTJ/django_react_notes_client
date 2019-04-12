@@ -1,16 +1,39 @@
 import React, {Component, Fragment} from 'react';
 import './App.css';
 import {Button, Container, Row, Col} from 'reactstrap';
+import ListNotes from "./components/ListNotes";
+
+const notes_temp = [
+    {
+        'id': 1,
+        'title': 'This is react node data',
+        'content': 'This is the content'
+    },
+    {
+        'id': 2,
+        'title': 'Second note',
+        'content': 'This is more content'
+    },
+    {
+        'id': 3,
+        'title': 'Third note',
+        'content': 'This is the content #3'
+    }
+];
 
 class App extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-        notes: [],
+        notes: notes_temp,
         current_note_id: 0,
         is_creating: true
     }
+  }
+
+  handleItemClick(id) {
+      console.log(id);
   }
 
   render() {
@@ -28,7 +51,7 @@ class App extends Component {
 
               <Row>
                   <Col xs="4">
-                      <h5>Add notes here...</h5>
+                      <ListNotes notes={this.state.notes} handleItemClick={(id) => this.handleItemClick(id)} />
                   </Col>
                   <Col xs="8">
                       <p>Content/Editing here...</p>
