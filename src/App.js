@@ -25,6 +25,15 @@ class App extends Component {
                       <Button color="primary">Create new note</Button>
                   </Col>
               </Row>
+
+              <Row>
+                  <Col xs="4">
+                      <h5>Add notes here...</h5>
+                  </Col>
+                  <Col xs="8">
+                      <p>Content/Editing here...</p>
+                  </Col>
+              </Row>
           </Container>
       </Fragment>
     );
