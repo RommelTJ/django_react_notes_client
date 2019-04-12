@@ -2,34 +2,29 @@ import React, {Component, Fragment} from 'react';
 import './App.css';
 import {Button, Container, Row, Col} from 'reactstrap';
 import ListNotes from "./components/ListNotes";
+import {fetchNotes, fetchNote, updateNote} from './api';
 
-const notes_temp = [
-    {
-        'id': 1,
-        'title': 'This is react node data',
-        'content': 'This is the content'
-    },
-    {
-        'id': 2,
-        'title': 'Second note',
-        'content': 'This is more content'
-    },
-    {
-        'id': 3,
-        'title': 'Third note',
-        'content': 'This is the content #3'
-    }
-];
 
 class App extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-        notes: notes_temp,
+        notes: [],
         current_note_id: 0,
-        is_creating: true
+        is_creating: true,
+        is_fetching: true
     }
+  }
+
+  componentDidMount() {
+      this.getData();
+  }
+
+  async getData() {
+      let data = await fetchNotes();
+      this.setState({notes: data});
+      this.setState({is_fetching: false});
   }
 
   handleItemClick(id) {
